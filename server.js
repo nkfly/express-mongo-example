@@ -7,9 +7,15 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 
 
-// react
+// react begin
 
 app.use(express.static('public'));
+
+app.get('/test_array', function (req, res) {
+  res.send(JSON.stringify({data : [1, 2, 3, 4, 5, 6, 7]}));
+});
+
+// react end
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test_collection');
