@@ -5,6 +5,12 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
+
+
+// react
+
+app.use(express.static('public'));
+
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test_collection');
 
