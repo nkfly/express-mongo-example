@@ -1,27 +1,38 @@
 
 import React from 'react';
+import { Button } from 'react-bootstrap';
+import FlatButton from 'material-ui/FlatButton';
+import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 class Sidebar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {counter: 0};
   }
 
-  handleUpClick() {
-    this.setState({counter: this.state.counter + 1});
+  getChildContext() {
+    return { muiTheme: getMuiTheme(baseTheme) };
   }
-  handleDownClick() {
-    this.setState({counter: this.state.counter - 1});
+
+  handleClick(message) {
+  	var self = this;
+  	return function() {
+  		self.props.onClickSidebarButton(message);
+  	}
   }
+  
   render() {
     return <div>
-    	<button onClick={this.handleUpClick.bind(this) }>Up</button>
-    	<button onClick={this.handleDownClick.bind(this)}>Down</button>
-    	{this.state.counter}
+    	<Button bsStyle="primary" onClick={this.handleClick('Sidebar Up')}>Sidebar Up</Button>
+    	<FlatButton label="Sidebar Down" primary={true} onClick={this.handleClick('Sidebar Down')}></FlatButton>
       </div>
   }
 }
 
 module.exports = Sidebar;
+
+Sidebar.childContextTypes = {
+   muiTheme: React.PropTypes.object.isRequired,
+};
 
 

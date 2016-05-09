@@ -33,6 +33,18 @@ class Content extends React.Component {
     console.log('update');
 
   }
+
+  onClickSidebarButton(button) {
+    switch (button) {
+      case 'Sidebar Up':
+        this.setState({counter: this.state.counter + 1});
+        break;
+      case 'Sidebar Down':
+        this.setState({counter: this.state.counter - 1});
+        break;
+    }
+    console.log(button);
+  }
   render() {
     return <div>
     	<button onClick={this.handleUpClick.bind(this) }>Up</button>
